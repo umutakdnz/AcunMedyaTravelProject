@@ -1,0 +1,27 @@
+﻿@model AcunMedyaTravelProject.Entities.Sponsor
+@{
+    ViewBag.Title = "UpdateSponsor";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container py-5">
+    <div class="card shadow rounded-4">
+        <div class="card-body">
+            <h2 class="card-title mb-4 text-center">Sponsoru Güncelle</h2>
+
+            <form method="post">
+                @Html.HiddenFor(a => a.SponsorID)
+
+                <div class="mb-3">
+                    <label for="ImageUrl" class="form-label">Sponsor Resim URL</label>
+                    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control", @placeholder = "Sponsor resim bağlantısını güncelleyin" })
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success px-4">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

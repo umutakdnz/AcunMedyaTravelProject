@@ -1,0 +1,426 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Giriş Paneli</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+
+        .login-wrapper {
+            display: flex;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(41, 53, 108, 0.1);
+            background-color: #fff;
+            position: relative;
+            min-height: 600px;
+        }
+
+        .login-side {
+            width: 50%;
+            padding: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-side::before {
+            content: "";
+            position: absolute;
+            top: -40%;
+            right: -40%;
+            width: 80%;
+            height: 120%;
+            background: linear-gradient(135deg, rgba(99, 125, 255, 0.05) 0%, rgba(48, 64, 191, 0.05) 100%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .login-side::after {
+            content: "";
+            position: absolute;
+            bottom: -30%;
+            left: -20%;
+            width: 60%;
+            height: 60%;
+            background: linear-gradient(135deg, rgba(99, 125, 255, 0.03) 0%, rgba(48, 64, 191, 0.03) 100%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .image-side {
+            width: 50%;
+            background: linear-gradient(135deg, #3f51b5 0%, #5664d2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-side::before {
+            content: "";
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .image-side::after {
+            content: "";
+            position: absolute;
+            bottom: -10%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .image-content {
+            color: #fff;
+            text-align: center;
+            padding: 0 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-content h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .image-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .circle-1 {
+            width: 100px;
+            height: 100px;
+            top: 15%;
+            right: 20%;
+        }
+
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 10%;
+            left: 25%;
+        }
+
+        .circle-3 {
+            width: 70px;
+            height: 70px;
+            top: 50%;
+            left: 15%;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #3f51b5 0%, #5664d2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .welcome-text h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .welcome-text p {
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .login-form .form-control {
+            height: 60px;
+            width: 100%;
+            background-color: #f8f9fa;
+            border: 2px solid #f0f0f0;
+            border-radius: 16px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .login-form .form-control:focus {
+            border-color: #3f51b5;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(63, 81, 181, 0.1);
+        }
+
+        .login-form .form-control::placeholder {
+            color: transparent;
+        }
+
+        .login-form .form-label {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            background-color: transparent;
+        }
+
+        .login-form .form-control:focus + .form-label,
+        .login-form .form-control:not(:placeholder-shown) + .form-label {
+            top: 0;
+            left: 15px;
+            font-size: 12px;
+            padding: 0 5px;
+            background-color: #fff;
+            color: #3f51b5;
+        }
+
+        .login-form .form-control:focus {
+            outline: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(135deg, #3f51b5 0%, #5664d2 100%);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(63, 81, 181, 0.15);
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(63, 81, 181, 0.25);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 25px 0;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-check-input {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            accent-color: #3f51b5;
+        }
+
+        .form-check-label {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .forgot-password {
+            color: #3f51b5;
+            font-size: 14px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #5664d2;
+            text-decoration: underline;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 15px;
+        }
+
+        .register-link a {
+            color: #3f51b5;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .register-link a:hover {
+            color: #5664d2;
+            text-decoration: underline;
+        }
+
+        .validation-error {
+            background-color: #fff5f7;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 12px;
+            color: #e74c3c;
+            font-size: 14px;
+        }
+
+        @@media (max-width: 992px) {
+            .login-wrapper {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .login-side, .image-side {
+                width: 100%;
+            }
+
+            .image-side {
+                min-height: 300px;
+                order: -1;
+            }
+
+            .login-side {
+                padding: 40px 30px;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .login-side {
+                padding: 30px 20px;
+            }
+
+            .welcome-text h1 {
+                font-size: 24px;
+            }
+
+            .image-side {
+                min-height: 200px;
+            }
+
+            .image-content h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-wrapper">
+            <div class="login-side">
+                <div class="logo">
+                    <div class="logo-icon">A</div>
+                    <div class="logo-text">Admin Panel</div>
+                </div>
+                <div class="welcome-text">
+                    <h1>Merhaba! Hoş Geldiniz</h1>
+                    <p>Yönetim paneline erişmek için giriş yapın</p>
+                </div>
+                <form class="login-form" method="post" action="/Login/Index">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="UserName" name="UserName" placeholder="Kullanıcı Adı">
+                        <label for="username" class="form-label">Kullanıcı Adı</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="Password" name="Password" placeholder="Şifre">
+                        <label for="password" class="form-label">Şifre</label>
+                    </div>
+                    <div class="form-options">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Oturumumu açık tut</label>
+                        </div>
+                        <a href="#" class="forgot-password">Şifremi Unuttum</a>
+                    </div>
+                        <button type="submit" class="login-btn">Giriş Yap</button>
+                    <div class="register-link">
+                        Hesabınız Yok Mu? <a href="#">Oluştur</a>
+                    </div>
+                </form>
+            </div>
+            <div class="image-side">
+                <div class="decorative-circle circle-1"></div>
+                <div class="decorative-circle circle-2"></div>
+                <div class="decorative-circle circle-3"></div>
+                <div class="image-content">
+                    <h2>Yönetim Panelinize Hoş Geldiniz</h2>
+                    <p>Verimli yönetim ve analiz için tasarlanan modern yönetim paneli ile işletmenizi tek bir yerden yönetin.</p>
+                </div>
+            </div>
+        </div>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="validation-error">
+                <p>@Html.ValidationSummary()</p>
+            </div>
+        }
+    </div>
+</body>
+</html>
+

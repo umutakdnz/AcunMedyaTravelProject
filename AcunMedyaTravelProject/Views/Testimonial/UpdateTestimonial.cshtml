@@ -1,0 +1,42 @@
+﻿@model AcunMedyaTravelProject.Entities.Testimonial
+@{
+    ViewBag.Title = "UpdateTestimonial";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container py-5">
+    <div class="card shadow rounded-4">
+        <div class="card-body">
+            <h2 class="card-title mb-4 text-center">Referans Güncelle</h2>
+
+            <form method="post">
+                @Html.HiddenFor(a => a.TestimonialID)
+
+                <div class="mb-3">
+                    <label for="Title" class="form-label">Ad - Soyad</label>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Referansın ad- soyad bilgisini güncelleyin" })
+                </div>
+
+                <div class="mb-3">
+                    <label for="Description" class="form-label">Ülke - Şehir</label>
+                    @Html.TextAreaFor(x => x.Surname, new { @class = "form-control", @rows = "3", @placeholder = "Referansın ülke - şehir bilgisini güncelleyin" })
+                </div>
+
+                <div class="mb-3">
+                    <label for="ImageUrl" class="form-label">Resim URL</label>
+                    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control", @placeholder = "Resim bağlantısını güncelleyin" })
+                </div>
+
+                <div class="mb-3">
+                    <label for="Description" class="form-label">Açıklama</label>
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @rows = "3", @placeholder = "Referansın açıklamasını güncelleyin" })
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success px-4">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
